@@ -1,0 +1,65 @@
+﻿namespace n27
+{
+    internal class Program
+    {
+            static void Main(string[] args)
+            {
+                List<Poligono> poligoni = new List<Poligono>();
+                Random random = new Random();
+                for (int i = 0; i < 5; i++)
+                {
+                    int scelta = random.Next(0, 3);
+                    switch (scelta)
+                    {
+                        case 0:
+                            poligoni.Add(new TriangoloIsoscele(random.Next(1, 11), random.Next(1, 11), random.Next(1, 11)));
+                            break;
+
+                        case 1:
+                            poligoni.Add(new TriangoloScaleno(random.Next(1, 11), random.Next(1, 11), random.Next(1, 11), random.Next(1, 11)));
+                            break;
+
+                        case 2:
+                            poligoni.Add(new TriangoloEquilatero(random.Next(1, 11), random.Next(1, 11)));
+                            break;
+
+
+                    }
+                }
+                
+
+            }
+
+            public static Poligono TrovareaMaggiore(List<Poligono> poligoni)
+            {
+            Poligono p = poligoni[0];
+
+
+            foreach(Poligono pol in poligoni) {
+                if(pol.CalcoloArea() > p.CalcoloArea())
+                    p = pol;
+            }
+
+            return p;
+            }
+
+
+        public static Poligono TrovareaMinore(List<Poligono> poligoni)
+        {
+            Poligono p = poligoni[0];
+
+
+            foreach (Poligono pol in poligoni)
+            {
+                if (pol.CalcoloArea() < p.CalcoloArea())
+                    p = pol;
+            }
+
+            return p;
+           
+        }
+
+    }
+    }
+}
+}
